@@ -1,182 +1,165 @@
-body {
-    font-family: 'Verdana', sans-serif;
-    background: rgb(203,230,218);
-    background: radial-gradient(circle, rgba(203,230,218,1) 0%, rgba(147,211,212,1) 50%, rgba(217,189,231,1) 100%);
+:root {
+    --main-bg: radial-gradient(circle, rgba(203,230,218,1) 0%, rgba(147,211,212,1) 50%, rgba(217,189,231,1) 100%);
+    --container-bg: #276359;
+    --container-border: #40a594;
+    --link-bg: #e7dde9;
+    --link-border: #a744b4;
+    --link-color: #14646d;
+    --link-hover-bg: #6d2a75;
+    --font-main: 'Verdana', sans-serif;
+  }
+  
+  body {
+    font-family: var(--font-main);
+    background: var(--main-bg);
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Allow vertical stacking */
-    min-height: 100vh;     /* Ensure it fills the viewport */
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
-    padding: 20px;         /* Add some padding for breathing room */
-}
-
-.link-container {
+    padding: 20px;
+  }
+  
+  .link-container {
     text-align: center;
-    background-color: #276359;
+    background-color: var(--container-bg);
+    border: 3px solid var(--container-border);
     color: #fff;
-    padding: 30px;         /* Increase padding for more space */
+    padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
-    height: auto;         /* Allow height to adjust based on content */
+    height: auto;
     margin: auto;
-}
-
-h1 {
-    font-size: 1.5rem;
-}
-
-h2 {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-}
-
-h3 {
-    font-size: .75rem;
-    margin-bottom: 50px;
-    font-weight: 100;
-}
-
-ul {
+  }
+  
+  h1 { font-size: 1.5rem; margin-bottom: 0; }
+  h2 { font-size: 1.1rem; margin-bottom: 25px; margin-top: -5px; }
+  h3 { font-size: .75rem; margin-bottom: 50px; font-weight: 100; }
+  
+  ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-}
-
-li {
+  }
+  
+  li {
     margin: 15px 0;
     position: relative;
-}
-
-/* Main button styles */
-a {
+  }
+  
+  a {
     display: block;
     text-decoration: none;
     font-size: 1.2rem;
-    color: #8e2d9b;
-    background-color: #c7ebee;
-    border: 2px solid #a744b4;
+    color: var(--link-color);
+    background-color: var(--link-bg);
+    border: 2px solid var(--link-border);
     padding: 8px 15px;
     border-radius: 3px;
     transition: background-color 0.15s, color 0.2s;
-}
-
-a:hover {
-    background-color: #5d9197;
+  }
+  
+  a:hover {
+    background-color: var(--link-hover-bg);
     color: white;
-}
-
-/* Main container styles */
-.spotify-container {
-    position: relative; /* So the sub-buttons are positioned relative to this container */
-    overflow: hidden; /* Ensure content doesn't overflow */
-}
-
-/* Sub-buttons - Initially hidden */
-.sub-buttons {
-    display: grid; /* Keep as grid for layout */
-    margin-top: 10px; /* Space between the main button and sub-buttons */
-    grid-template-columns: repeat(2, 1fr); /* Arrange in two columns */
-    gap: 7px; /* Space between the buttons */
-    opacity: 0; /* Start as invisible */
-    max-height: 0; /* Start with a height of 0 for smooth expansion */
-    transition: opacity 0.3s ease, max-height 0.3s ease; /* Smooth transition for opacity and height */
-    visibility: hidden; /* Initially hidden */
-}
-
-/* Set font size for links within sub-buttons */
-.sub-buttons a {
+  }
+  
+  .spotify-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sub-buttons {
+    display: grid;
+    margin-top: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+    visibility: hidden;
+  }
+  
+  .sub-buttons a {
     font-style: italic;
-    font-size: 0.9rem; /* Set font size for sub-buttons */
-}
-
-/* Show sub-buttons on hover */
-.spotify-container:hover .sub-buttons {
-    opacity: 1; /* Make visible */
-    max-height: 200px; /* Change to desired maximum height */
-    visibility: visible; /* Ensure it's visible */
-}
-
-/* Hide sub-buttons when not hovered */
-.spotify-container:not(:hover) .sub-buttons {
-    opacity: 0; /* Fade out */
-    max-height: 0; /* Collapse to no height */
-    visibility: hidden; /* Hide after fading out */
-}
-
-/* Keyframe animation for sliding down */
-@keyframes slideDown {
-    from {
-        max-height: 0; /* Start with no height */
-        opacity: 0; /* Start invisible */
-    }
-    to {
-        max-height: 200px; /* Adjust to your desired maximum height */
-        opacity: 1; /* Fully visible */
-    }
-}
-
-/* Keyframe animation for sliding up */
-@keyframes slideUp {
-    from {
-        max-height: 200px; /* Starting from the expanded height */
-        opacity: 1; /* Start fully visible */
-    }
-    to {
-        max-height: 0; /* Collapse to no height */
-        opacity: 0; /* Fade out */
-        visibility: hidden; /* Hide after fading out */
-    }
-}
-
-/* Change Spotify link text on hover */
-.spotify-container:hover > a::before {
+    font-size: 0.9rem;
+  }
+  
+  .spotify-container:hover .sub-buttons {
+    opacity: 1;
+    max-height: 200px;
+    visibility: visible;
+  }
+  
+  .spotify-container:not(:hover) .sub-buttons {
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+  }
+  
+  .spotify-container:hover > a::before {
     content: "see entire library - ";
+  }
+  
+  .sprite-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
-
-
-/* Responsive styles */
-@media (max-width: 768px) {
-    a {
-        font-size: 1rem;
-        padding: 10px 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    a {
-        font-size: 0.9rem;
-        padding: 8px 16px;
-    }
-}
-
-@keyframes bounce {
-    0% {
-        transform: translateY(0) translateX(0); /* Starting position (center) */
-    }
-    20% {
-        transform: translateY(-15px) translateX(-15px); /* Move up and to the left */
-    }
-    40% {
-        transform: translateY(0) translateX(-25px); /* Land on the left */
-    }
-    60% {
-        transform: translateY(-15px) translateX(15px); /* Move up and to the right */
-    }
-    80% {
-        transform: translateY(0) translateX(25px); /* Land on the right */
-    }
-    100% {
-        transform: translateY(0) translateX(0); /* Return to the center */
-    }
-}
-
-.sprite {
+  
+  .sprite {
     display: block;
-    margin: 20px auto; /* Center the sprite and add margin */
-    width: 64px; /* Set width to match actual size */
-    height: 64px; /* Set height to match actual size */
-    animation: bounce 2s infinite; /* Apply the bounce animation */
+    margin: 0 10px;
+    width: 64px;
+    height: 64px;
+    animation: softBounce 2s infinite;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 }
+  
+  .sprite:nth-child(2) {
+    animation: rotateAndScale 2s infinite;
+  }
+  
+  .sprite:nth-child(3) {
+    animation: softBounce3 2s infinite;
+  }
+  
+  @keyframes softBounce {
+    0%, 100% { transform: translateY(0) translateX(5px); }
+    25% { transform: translateY(-10px) translateX(-5px); }
+    50% { transform: translateY(0) translateX(-5px); }
+    75% { transform: translateY(-5px) translateX(5px); }
+  }
+  
+  @keyframes rotateAndScale {
+    0%, 100% { transform: translateY(0) translateX(10px) scale(.94) rotate(0deg); }
+    25% { transform: translateY(-5px) translateX(5px) scale(.98) rotate(5deg); }
+    50% { transform: translateY(0) translateX(0) scale(.98) rotate(0deg); }
+    75% { transform: translateY(-5px) translateX(-5px) scale(0.90) rotate(-5deg); }
+  }
+  
+  @keyframes softBounce3 {
+    0%, 100% { transform: translateY(0) translateX(15px); }
+    25% { transform: translateY(-20px) translateX(5px); }
+    50% { transform: translateY(0) translateX(5px); }
+    75% { transform: translateY(-15px) translateX(10px); }
+  }
+  
+  @media (max-width: 768px) {
+    a { font-size: 1rem; padding: 10px 20px; }
+  }
+  
+  @media (max-width: 480px) {
+    a { font-size: 0.9rem; padding: 8px 16px; }
+  }
