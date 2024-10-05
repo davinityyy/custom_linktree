@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yo what's good
-    </title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Davina Rose's personal link page for content and interests">
+        <meta name="author" content="Davina Rose">
+        <title>davina rose - personal links</title>
+        <link rel="stylesheet" href="styles.css">
+        <!-- Add a favicon if you have one -->
+        <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    </head>
 <body>
     <div class="link-container">
         <h1>davina rose</h1>
         <h2>[davinityyy]</h2>
-        <h3>welcome to my custom linktree, <br> here you'll find any relevant links to my content and interests (:</h3>
+        <h3>welcome welcome to my link page, <br> here you'll find any relevant links to my content and interests (:</h3>
         <ul>
             <li class="spotify-container">
-                <a href="https://open.spotify.com/user/1240349387" target="_blank" rel="noopener noreferrer">spotify</a>
+                <a href="https://open.spotify.com/user/1240349387" class="main-link" target="_blank" rel="noopener noreferrer">spotify</a>
+                <div class="favorites-text">or choose from some of my favorites</div>
                 <div class="sub-buttons">
                     <a href="https://open.spotify.com/playlist/31s3YxiukLzeiOcrVQEaYD?si=3dfV-Jw_RMOv3eejBbek6A" target="_blank" rel="noopener noreferrer">drum n bassSTEP</a>
                     <a href="https://open.spotify.com/playlist/2eoayKyhSrRZQyIej5VTGg?si=UtxGCZ43TlGWRzInVkWG4w" target="_blank" rel="noopener noreferrer">anime OSTs</a>
@@ -22,16 +26,48 @@
                     <a href="https://open.spotify.com/playlist/43f4u4mhx2gLzkolJTdSjT?si=dAp_stGmTAOA9IMeO23cTA" target="_blank" rel="noopener noreferrer">ez katka</a>
                 </div>
             </li>
-            <li><a href="https://fansly.com/davinityyy" target="_blank" rel="noopener noreferrer">fansly</a></li>
-            <!-- Add more links as needed -->
+            <li class="fansly-container">
+                <a href="https://fansly.com/davinityyy" class="main-link" target="_blank" rel="noopener noreferrer">
+                    fansly
+                    <span class="hover-text">exclusive content</span>
+                </a>
+            </li>
         </ul>
         <br><br>
         <div class="sprite-container">
             <img src="assets/sun.png" alt="Your Sprite Description" class="sprite second" />
             <img src="assets/davinity.png" alt="Your Sprite Description" class="sprite" />
             <img src="assets/flower.png" alt="Your Sprite Description" class="sprite third" />
-        </div>    </div>
+        </div>
+        <footer>
+            <p><span class="year">&copy; 2023</span> davina rose | all rights reserved</p>
+        </footer>
+    </div>   
 </body>
 
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mainLinks = document.querySelectorAll('.main-link');
+    
+        mainLinks.forEach(link => {
+            let tapped = false;
+    
+            link.addEventListener('click', function(e) {
+                if (!tapped && window.innerWidth <= 768) {  // Adjust this value as needed
+                    e.preventDefault();
+                    tapped = true;
+                    setTimeout(() => { tapped = false; }, 5000);  // Reset after 5 seconds
+                }
+            });
+    
+            link.addEventListener('touchstart', function() {
+                this.classList.add('touch-hover');
+            });
+    
+            link.addEventListener('touchend', function() {
+                this.classList.remove('touch-hover');
+            });
+        });
+    });
+    </script>
 </html>
