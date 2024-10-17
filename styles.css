@@ -124,20 +124,20 @@ a:hover {
     content: "see entire library - ";
 }
 
-/* Fansly container customization */
-.fansly-container {
+/* other-button container customization */
+.other-button-container {
     position: relative;
     overflow: hidden;
     margin-bottom: 5px;
 }
 
-.fansly-container a {
+.other-button-container a {
     position: relative;
     padding-bottom: 8px;
     transition: padding-bottom 0.3s ease;
 }
 
-.fansly-container .hover-text {
+.other-button-container .hover-text {
     position: absolute;
     bottom: -20px; /* Adjust this value to bring it closer */
     left: 0;
@@ -152,17 +152,17 @@ a:hover {
     border-radius: 0 0 3px 3px;
 }
 
-.fansly-container:hover .hover-text {
+.other-button-container:hover .hover-text {
     opacity: 1;
     transform: translateY(0);
     bottom: 0; /* Bring it all the way up on hover */
 }
 
-.fansly-container:hover a {
+.other-button-container:hover a {
     padding-bottom: 20px; /* Reduced padding to bring text closer */
 }
 
-.fansly-container a::after {
+.other-button-container a::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -174,7 +174,7 @@ a:hover {
     transition: transform 0.3s ease;
 }
 
-.fansly-container:hover a::after {
+.other-button-container:hover a::after {
     transform: scaleX(1);
 }
 
@@ -259,17 +259,17 @@ a:hover {
         visibility: visible;
     }
 
-    .fansly-container .main-link.touch-hover {
+    .other-button-container .main-link.touch-hover {
         padding-bottom: 20px;
     }
 
-    .fansly-container .main-link.touch-hover .hover-text {
+    .other-button-container .main-link.touch-hover .hover-text {
         opacity: 1;
         transform: translateY(0);
         bottom: 0;
     }
 
-    .fansly-container .main-link.touch-hover::after {
+    .other-button-container .main-link.touch-hover::after {
         transform: scaleX(1);
     }
 }
