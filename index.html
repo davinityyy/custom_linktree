@@ -19,22 +19,69 @@
 
   gtag('config', 'G-Y6LDCBJH3Q');
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const h1Element = document.querySelector("h1");
+        const h2Element = document.querySelector("h2");
+    
+        // L33t Mapping
+        const l33tMap = { "a": "4", "e": "3", "i": "1", "o": "0", "s": "5" };
+    
+        function transformLetter(letter) {
+            return l33tMap[letter.toLowerCase()] || letter;
+        }
+    
+        function applyL33tEffect(event) {
+            const span = event.target;
+            if (span.tagName === "SPAN") {
+                const originalText = span.innerText;
+                span.innerText = transformLetter(originalText);
+                setTimeout(() => {
+                    span.innerText = originalText; // Revert after delay
+                }, 1500);
+            }
+        }
+    
+        function applyRainbowEffect(event) {
+            const span = event.target;
+            if (span.tagName === "SPAN") {
+                span.style.transition = "color 0.8s ease-in-out";
+                span.style.color = getRandomRainbowColor();
+                setTimeout(() => {
+                    span.style.color = ""; // Revert after 1.5 seconds
+                }, 1500);
+            }
+        }
+    
+        function wrapLetters(element) {
+            const text = element.innerText;
+            element.innerHTML = text.split("").map(char => `<span>${char}</span>`).join("");
+        }
+    
+        function getRandomRainbowColor() {
+            const colors = ["#ff0000", "#ff7f00", "#ffff00", "#00ff00", "#0000ff", "#4b0082", "#9400d3"];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    
+        wrapLetters(h1Element);
+        wrapLetters(h2Element);
+    
+        h1Element.addEventListener("click", applyL33tEffect);
+        h2Element.addEventListener("click", applyRainbowEffect);
+    });
+    </script>
+    
 <body>
     <div class="link-container">
-        <h1>davina rose</h1>
-        <h2>[davinityyy]</h2>
-        <h3>welcome welcome to my link page, <br> here you'll find any relevant links to my content and interests (:</h3>
+        <h1>✧ davina rose ✧</h1>
+        <h2>[ davinityyy ]</h2>
+        <h3>click a link to explore my world :3 <br>music, exclusive content & wishlist inside ↓</h3>
+        <div class="sudavina-container">
+            <img src="assets/sudavina.png" alt="Sudavina" class="sudavina-img">
+        </div>
+        
         <ul>
-            <li class="spotify-container">
-                <a href="https://open.spotify.com/user/1240349387" class="main-link" target="_blank" rel="noopener noreferrer">spotify</a>
-                <div class="favorites-text">or choose from some of my favorites</div>
-                <div class="sub-buttons">
-                    <a href="https://open.spotify.com/playlist/31s3YxiukLzeiOcrVQEaYD?si=3dfV-Jw_RMOv3eejBbek6A" target="_blank" rel="noopener noreferrer">drum n bassSTEP</a>
-                    <a href="https://open.spotify.com/playlist/2eoayKyhSrRZQyIej5VTGg?si=UtxGCZ43TlGWRzInVkWG4w" target="_blank" rel="noopener noreferrer">anime OSTs</a>
-                    <a href="https://open.spotify.com/playlist/5QnuLZIuRpW2PFWmYLwBQX?si=G_yzpinnRCqAcrVgWb_44w" target="_blank" rel="noopener noreferrer">untz</a>
-                    <a href="https://open.spotify.com/playlist/43f4u4mhx2gLzkolJTdSjT?si=dAp_stGmTAOA9IMeO23cTA" target="_blank" rel="noopener noreferrer">ez katka</a>
-                </div>
-            </li>
             <li class="other-button-container">
                 <a href="https://fansly.com/davinityyy" class="main-link" target="_blank" rel="noopener noreferrer">
                     fansly
@@ -46,6 +93,16 @@
                     throne
                     <span class="hover-text">my wishlist!</span>
                 </a>
+            </li>
+            <li class="spotify-container">
+                <a href="https://open.spotify.com/user/1240349387" class="main-link" target="_blank" rel="noopener noreferrer">spotify</a>
+                <div class="favorites-text">or choose from some of my favorites</div>
+                <div class="sub-buttons">
+                    <a href="https://open.spotify.com/playlist/31s3YxiukLzeiOcrVQEaYD?si=3dfV-Jw_RMOv3eejBbek6A" target="_blank" rel="noopener noreferrer">drum n bassSTEP</a>
+                    <a href="https://open.spotify.com/playlist/2eoayKyhSrRZQyIej5VTGg?si=UtxGCZ43TlGWRzInVkWG4w" target="_blank" rel="noopener noreferrer">anime OSTs</a>
+                    <a href="https://open.spotify.com/playlist/5QnuLZIuRpW2PFWmYLwBQX?si=G_yzpinnRCqAcrVgWb_44w" target="_blank" rel="noopener noreferrer">untz</a>
+                    <a href="https://open.spotify.com/playlist/43f4u4mhx2gLzkolJTdSjT?si=dAp_stGmTAOA9IMeO23cTA" target="_blank" rel="noopener noreferrer">ez katka</a>
+                </div>
             </li>
         </ul>
         <br><br>
@@ -86,7 +143,6 @@
         });
     });
     </script>
-
     <script>
         document.querySelector('.year').textContent = new Date().getFullYear();
     </script>
