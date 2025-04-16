@@ -126,7 +126,7 @@ li {
 .favorites-text {
     font-size: 0.8rem;
     font-style: italic;
-    color: var(--link-color);
+    color: #85a29c;
     margin: 5px 0;
     opacity: 0;
     max-height: 0;
@@ -153,6 +153,16 @@ li {
     font-style: italic;
     font-size: 0.9rem;
 }
+
+.sub-buttons a:link,
+.sub-buttons a:visited {
+  color: var(--link-color);
+}
+
+.sub-buttons a:hover {
+  color: #ffe6f9;
+}
+
 
 .spotify-container:hover .sub-buttons {
     opacity: 1;
