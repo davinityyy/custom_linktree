@@ -135,8 +135,41 @@
 
         <footer>
             <p><span class="year">&copy; 2023</span> davina rose | all rights reserved</p>
+          <p class="visitor-counter" style="font-size: 0.75rem; color: #7fd6dc; margin-top: -5px;"></p>
+
         </footer>
-    </div>   
+    </div> 
+    
+    <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+
+<!-- Visitor Counter Script -->
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDaXzPtn5D3g9aR-pG3tkTJ5iwNz6t4QUY",
+    authDomain: "davinityyy-site.firebaseapp.com",
+    databaseURL: "https://davinityyy-site-default-rtdb.firebaseio.com",
+    projectId: "davinityyy-site",
+    storageBucket: "davinityyy-site.firebasestorage.app",
+    messagingSenderId: "997814757597",
+    appId: "1:997814757597:web:116e0497395196939c1334",
+    measurementId: "G-3BTBLBMRM5"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+  const counterRef = db.ref('visitorCount');
+
+  counterRef.transaction(current => {
+    return (current || 0) + 1;
+  }).then(result => {
+    const count = result.snapshot.val();
+    document.querySelector('.visitor-counter').textContent =
+      `✶ you are visitor #${String(count).padStart(4, '0')} ✶`;
+  });
+</script>
+
 </body>
 
 <script>
