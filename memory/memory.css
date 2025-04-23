@@ -12,7 +12,10 @@
     font-style: normal;
   }
   
-
+  html, body {
+    overflow-x: hidden;
+  }
+  
 body {
     font-family: Arial, sans-serif;
     display: flex;
