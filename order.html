@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>get a custom linkpage | davina rose</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="order.css" />
+</head>
+<body>
+  
+  <div class="order-container">
+    <h1>order a custom ✧linkpage✧</h1>
+    <p>i’ll build a custom linktree-style page just for you. no coding, no accounts. hosted by me. dimensions slightly subject to change depending on spacing</p>
+  
+    <ul class="order-benefits">
+      <li><span class="emoji">📱</span> Works on any phone</li>
+      <li><span class="emoji">🎨</span> Custom colors, fonts, and layout</li>
+      <li><span class="emoji">🌙</span> Additional dark mode toggle setting</li>
+      <li><span class="emoji">🛠</span> I’ll host it for you, no tech needed</li>
+    </ul>
+  
+    <p><strong>starts at $22</strong> — you’ll get a preview before payment</p>
+
+    <div class="price-details">
+      <div class="summary" tabindex="0" role="button" aria-expanded="false">
+        <span class="arrow"></span> view detailed pricing breakdown
+      </div>
+      <div class="price-box">
+        <p class="section-label">BASE PACKAGE – $22</p>
+        <ul>
+          <li>3 standard buttons</li>
+          <li>Title, username, description</li>
+          <li>Custom image (you or AI-generated)</li>
+          <li>Hosted on yourname.netlify.app</li>
+        </ul>
+    
+        <p class="section-label">OPTIONAL UPGRADES</p>
+        <ul>
+          <li>Extra buttons → $2 each</li>
+          <li>Hover buttons → +$3 per button</li>
+          <li>Dropdown (2 sub-links) → $7</li>
+          <li>Dropdown (4 sub-links) → $12</li>
+          <li>Dark/Light alt version → $12<br>
+            <span class="sub-note">black/white or color-matched remix</span></li>
+        </ul>
+    
+        <p class="section-label">NOTES</p>
+        <ul>
+          <li>Each site is hosted by me</li>
+          <li>No custom domains (just yourname.netlify.app)</li>
+          <li>Continue to 'get started' for more information</li>
+        </ul>
+      </div>
+    </div>
+    
+
+    <a class="button" href="form.html">✧ get started ✧</a>
+
+    
+    <footer>
+      <p style="margin-top: 40px;">
+        &copy; <span class="year">2024</span> davina rose | all rights reserved
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelector(".year").textContent = new Date().getFullYear();
+  
+    const details = document.querySelector('.price-details');
+    const summary = details?.querySelector('.summary');
+    const box = details?.querySelector('.price-box');
+  
+    if (details && summary && box) {
+      summary.addEventListener('click', () => {
+        const isOpen = details.classList.contains('open');
+  
+        summary.setAttribute('aria-expanded', String(!isOpen));
+  
+        if (isOpen) {
+          box.style.maxHeight = box.scrollHeight + 'px';
+          box.style.opacity = '1';
+          requestAnimationFrame(() => {
+            box.style.maxHeight = '0';
+            box.style.opacity = '0';
+          });
+          setTimeout(() => {
+            details.classList.remove('open');
+          }, 500);
+        } else {
+          details.classList.add('open');
+          box.style.maxHeight = '0';
+          box.style.opacity = '0';
+          requestAnimationFrame(() => {
+            box.style.maxHeight = box.scrollHeight + 'px';
+            box.style.opacity = '1';
+          });
+        }
+      });
+    }
+  </script>
+  
+</body>
+</html>
