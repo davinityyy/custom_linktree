@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <head>
     <script>
       if (sessionStorage.getItem('fromLinktree') === 'true') {
         document.documentElement.classList.add('from-linktree');
       }
     </script>
+  
+  <script>
+    // Immediately clear loader state (like index.html)
+    document.documentElement.classList.remove('loading');
+    document.body?.classList.remove('loading');
+  </script>
   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,27 +89,58 @@
        <a href="#" class="back-button" id="back-to-home">← back to homepage</a>
    
        <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const backButton = document.getElementById('back-to-home');
+document.getElementById('back-to-home').addEventListener('click', (e) => {
+  e.preventDefault();
+
+  // ✅ tell homepage it should play fade-in
+  sessionStorage.setItem('fromLinktree', 'true');
+
+  // ✅ activate loader on current screen
   const loader = document.getElementById('page-loader');
+  document.body.classList.add('loading');
+  document.documentElement.classList.add('loading');
+  loader.classList.remove('hidden');
+  loader.classList.add('visible');
 
-  backButton.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    document.documentElement.classList.add('loading');
-    document.body.classList.add('loading');
-
-    loader.classList.remove('hidden');
-    loader.classList.add('visible');
-
-    setTimeout(() => {
-      window.location.href = '../index.html';
-    }, 1600);
-  });
+  setTimeout(() => {
+    window.location.href = '../index.html';
+  }, 1600);
 });
+
 
       </script>
       
+      <footer>
+        <p>&copy; 2025 Davina Rose | <a href="#" id="showPrivacy">privacy policy</a></p>
+      </footer>
+     
+      <!-- Modal structure -->
+<div id="privacyModal" class="privacy-modal hidden">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <button id="closePrivacy">×</button>
+    <div id="privacyText">loading...</div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('showPrivacy').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('privacyModal').classList.remove('hidden');
+
+    fetch('../privacy.html')
+      .then(res => res.text())
+      .then(html => {
+        const parsed = new DOMParser().parseFromString(html, 'text/html');
+        const content = parsed.querySelector('main, body, .content') || parsed.body;
+        document.getElementById('privacyText').innerHTML = content.innerHTML;
+      });
+  });
+
+  document.getElementById('closePrivacy').addEventListener('click', () => {
+    document.getElementById('privacyModal').classList.add('hidden');
+  });
+</script>
 
 </body>
 </html>

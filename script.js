@@ -451,4 +451,3 @@ ${addonSummary}
 —
 Total: $${total}`;
 }
-

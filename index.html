@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
+        <script>
+            // Clear session flags + loader state if you're returning FROM memory game
+            if (sessionStorage.getItem('fromLinktree') === 'true') {
+              sessionStorage.removeItem('fromLinktree');
+              document.documentElement.classList.add('from-linktree'); // used for blur/fade
+              document.body?.classList.add('from-linktree'); // same
+            }
+          
+            // Always ensure clean loader state
+            document.documentElement.classList.remove('loading');
+            document.body?.classList.remove('loading');
+          </script>
+          
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Davina Rose's personal link page for content and interests">
@@ -146,7 +160,7 @@
         <br>
 
         <footer>
-            <p><span class="year">&copy; 2023</span> davina rose | all rights reserved</p>
+            <p><span class="year">&copy; 2023</span> davina rose | <a href="privacy.html">privacy policy</a></p>
           <p class="visitor-counter" style="font-size: 0.75rem; color: #7fd6dc; margin-top: -5px;"></p>
 
         </footer>

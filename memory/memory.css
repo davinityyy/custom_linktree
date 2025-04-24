@@ -12,14 +12,24 @@
     font-style: normal;
   }
   
-  html, body {
-    overflow-x: hidden;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
+  
+
+  html {
+    overflow-x: hidden;
+  }  
+  
   
 body {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
+      min-height: 100vh;
+
     align-items: center;
     background-color: #1a2b1f; /* Dark green, like a PCB */
     background-image: 
@@ -38,6 +48,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    
 }
   
 
@@ -64,6 +75,72 @@ h2 {
     color: #c59eb4;
     font-family: 'DogicaPixel', Arial, sans-serif;
 }
+
+
+.privacy-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    background: rgba(124, 124, 124, 0.5);
+  }
+  
+  .privacy-modal.hidden {
+    display: none;
+  }
+  
+  .modal-content {
+    background: #f9f9f9;
+    padding: 3rem;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    position: relative;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  #closePrivacy {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .privacy-modal {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .privacy-modal:not(.hidden) {
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  footer {
+    margin-top: auto;
+    padding: 1rem 0;
+    text-align: center;
+    color: #b187b3;
+  }
+  
+  footer a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  
+  footer a:hover {
+    color: #ffffff; /* or whatever your hover color vibe is */
+  }
+  
 
 #game-board {
     position: relative;
@@ -155,83 +232,6 @@ h2 {
     background-color: #f7f7f7;
     width: 60%;
     box-shadow: 4px 4px 0px #aaa;
-}
-
-/* Code Composition Section */
-#code-composition {
-    margin-top: 25px;
-    width: 350px;
-    text-align: center;
-}
-
-#language-bar {
-    display: flex;
-    height: 0; /* Initially hidden */
-    opacity: 0; /* Hidden initially */
-    overflow: visible; /* Allow hover effect to go beyond bounds */
-    flex-direction: row; /* Ensures items remain horizontal */
-    border: 2px solid #ccc; /* Border for the bar */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 4px 4px 0px #aaa; /* Shadow effect */
-    transition: height 0.3s ease, opacity 0.3s ease; /* Smooth transitions */
-    position: relative; /* Ensure children (bars) can expand freely */
-}
-
-#language-bar.visible {
-    height: 25px; /* Height matches the bar's content */
-    opacity: 1; /* Make it visible */
-}
-
-/* Toggle Button Styling */
-#toggle-composition {
-    font-family: 'DogicaPixel', Arial, sans-serif;
-    color: #5a5a5a;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    cursor: pointer;
-    margin-bottom: 5px;
-    transition: color 0.1s ease;
-}
-
-#toggle-composition:hover {
-    color: #8a7489; /* Darken on hover */
-}
-
-/* Individual language segments */
-.language {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 0.65rem;
-    font-weight: bold;
-    text-align: center;
-    text-shadow: 1px 1px 1px #cacaca;
-    transition: all 0.15s ease; /* Smooth transition for size and text changes */
-}
-
-.language.html { background-color: #e0aecb; color: black; } /* HTML */
-.language.css { background-color: #e0b98d; color: black; } /* CSS */
-.language.js { background-color: #e1d892; color: black; } /* JavaScript */
-.language.python { background-color: #84d399; color: black; } /* Python */
-
-/* Hover effect for each language bar */
-.language:hover {
-    transform: scale(1.1); /* Slightly expand the entire block */
-    font-size: 0.65rem; /* Slightly increase text size */
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2); /* Add a stronger shadow on hover */
-    border-radius: 2px; /* Increase rounding slightly on hover */
-    z-index: 10; /* Ensure it appears above other elements */
-    position: relative; /* Ensure it's positioned properly over the border */
-}
-
-/* Center Code Composition Title */
-#code-composition h2 {
-    font-family: 'DogicaPixel', Arial, sans-serif;
-    color: #444;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    margin-bottom: 5px;
 }
 
 /* Instant character replacement on hover */
@@ -331,7 +331,7 @@ h2 {
 /* Responsive polish for mobile */
 @media (max-width: 600px) {
     h1 {
-      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
       line-height: 1.2;
       text-align: center;
       word-break: break-word;
@@ -376,7 +376,7 @@ h2 {
   html.from-linktree body {
     opacity: 0;
     backdrop-filter: blur(8px);
-    transition: opacity 0.6s ease, backdrop-filter 1.2s ease;
+    transition: opacity 0.8s ease, backdrop-filter 1.2s ease;
   }
   
   html.from-linktree body.unblur {
@@ -418,10 +418,12 @@ h2 {
     position: fixed;
     top: 0;
     left: 0;
-    bottom: 0; /* ✅ ensures full coverage */
-    right: 0;  /* ✅ ensures full coverage */
-    width: 100vw; /* use viewport units for consistency */
+    right: 0;
+    bottom: 0;
+    width: 100vw;
     height: 100vh;
+    margin: 0;
+    padding: 0;
     backdrop-filter: blur(3px);
     background: rgba(255, 255, 255, 0.6);
     color: #333;
@@ -438,6 +440,7 @@ h2 {
   
   
   .pixel-loader.visible {
+    display: flex;
     opacity: 1;
     pointer-events: all;
   }
