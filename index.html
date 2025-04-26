@@ -160,7 +160,7 @@
         <br>
 
         <footer>
-            <p><span class="year">&copy; 2023</span> davina rose | <a href="privacy.html">privacy policy</a></p>
+            <p><span class="year">&copy; 2023</span> davina rose | <a href="#" id="showPrivacy">privacy policy</a></p>
           <p class="visitor-counter" style="font-size: 0.75rem; color: #7fd6dc; margin-top: -5px;"></p>
 
         </footer>
@@ -214,7 +214,40 @@ document.getElementById('memory-link').addEventListener('click', (e) => {
 
   </script>
   
+<!-- Modal structure -->
+<div id="privacyModal" class="privacy-modal hidden">
+    <div class="modal-content">
+      <button id="closePrivacy">×</button>
+      <div id="privacyText">loading...</div>
+    </div>
+  </div>
+  
 
+  <script>
+    const privacyModal = document.getElementById('privacyModal');
+    const showPrivacy = document.getElementById('showPrivacy');
+    const closePrivacy = document.getElementById('closePrivacy');
+  
+    showPrivacy.addEventListener('click', (e) => {
+      e.preventDefault();
+      privacyModal.classList.remove('hidden');
+      privacyModal.classList.add('showing');
+  
+      fetch('privacy.html')
+        .then(res => res.text())
+        .then(html => {
+          const parsed = new DOMParser().parseFromString(html, 'text/html');
+          const content = parsed.querySelector('main, body, .content') || parsed.body;
+          document.getElementById('privacyText').innerHTML = content.innerHTML;
+        });
+    });
+  
+    closePrivacy.addEventListener('click', () => {
+      privacyModal.classList.remove('showing');
+      privacyModal.classList.add('hidden');
+    });
+  </script>
+  
 </body>
 
 <script>

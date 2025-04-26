@@ -111,7 +111,7 @@ document.getElementById('back-to-home').addEventListener('click', (e) => {
       </script>
       
       <footer>
-        <p>&copy; 2025 Davina Rose | <a href="#" id="showPrivacy">privacy policy</a></p>
+        <p><span class="year">&copy; 2025</span> davina rose | <a href="#" id="showPrivacy">privacy policy</a></p>
       </footer>
      
       <!-- Modal structure -->
@@ -124,23 +124,41 @@ document.getElementById('back-to-home').addEventListener('click', (e) => {
 </div>
 
 <script>
-  document.getElementById('showPrivacy').addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('privacyModal').classList.remove('hidden');
+  const modal = document.getElementById('privacyModal');
+  const showBtn = document.getElementById('showPrivacy');
+  const closeBtn = document.getElementById('closePrivacy');
+  const privacyText = document.getElementById('privacyText');
+  
+  showPrivacy.addEventListener('click', (e) => {
+  e.preventDefault();
 
-    fetch('../privacy.html')
-      .then(res => res.text())
-      .then(html => {
-        const parsed = new DOMParser().parseFromString(html, 'text/html');
-        const content = parsed.querySelector('main, body, .content') || parsed.body;
-        document.getElementById('privacyText').innerHTML = content.innerHTML;
-      });
-  });
+  // Show the modal
+  modal.classList.remove('hidden');
 
-  document.getElementById('closePrivacy').addEventListener('click', () => {
-    document.getElementById('privacyModal').classList.add('hidden');
-  });
-</script>
+  // Force reflow to ensure transition triggers
+  void modal.offsetWidth;
+
+  modal.classList.add('showing');
+
+  fetch('../privacy.html')
+    .then(res => res.text())
+    .then(html => {
+      const parsed = new DOMParser().parseFromString(html, 'text/html');
+      const content = parsed.querySelector('main, body, .content') || parsed.body;
+      privacyText.innerHTML = content.innerHTML;
+    });
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.classList.remove('showing');
+
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 400); // matches the transition timing
+});
+
+  </script>
+  
 
 </body>
 </html>
