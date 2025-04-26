@@ -12,6 +12,7 @@
     font-style: normal;
   }
   
+  
   * {
     margin: 0;
     padding: 0;
@@ -24,12 +25,11 @@
   }  
   
   
-body {
-    font-family: Arial, sans-serif;
+  body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     display: flex;
     flex-direction: column;
-      min-height: 100vh;
-
+    min-height: 100vh;
     align-items: center;
     background-color: #1a2b1f; /* Dark green, like a PCB */
     background-image: 
@@ -41,14 +41,33 @@ body {
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Standard */
+    overflow-x: hidden;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1a2b1f;
+  background-image: 
+      linear-gradient(90deg, rgba(34, 85, 51, 0.3) 1px, transparent 1px),
+      linear-gradient(rgba(34, 85, 51, 0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1; /* 👈 stay behind all content */
+  pointer-events: none; /* 👈 don't block clicks */
+}
+
+
 .page-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    
+  flex: 1; /* stretch to push footer down */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
 }
   
 
@@ -156,7 +175,6 @@ h2 {
     margin-bottom: 10px;
     font-size: 0.8rem;
     text-align: center;
-    color: var(--footer-text-color);
   }
   
   footer .year {
@@ -251,7 +269,7 @@ h2 {
 
 #status {
     font-size: 1.1rem;
-    margin-top: 15px;
+    margin-top: 5px;
     text-align: center;
     font-family: 'DogicaPixel', Arial, sans-serif;
     color: #444;
@@ -259,7 +277,7 @@ h2 {
 
 /* New Status Container */
 #status-container {
-    height: 50px; /* Fixed height to prevent shifting */
+    height: 60px; /* Fixed height to prevent shifting */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -363,39 +381,116 @@ h2 {
     animation-timing-function: ease-in-out; /* Smooth movement */
 }
 
-
-/* Responsive polish for mobile */
-@media (max-width: 600px) {
-    h1 {
-      font-size: clamp(1.6rem, 5vw, 2.4rem);
-      line-height: 1.2;
-      text-align: center;
-      word-break: break-word;
-      padding: 0 10px;
-      margin-top: 8rem;
-    }
-  
-    h2 {
-      font-size: 0.8rem;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-  
-    #status-container {
-      width: 99%;
-      height: 4rem;
-      padding: 8px 12px;
-      box-sizing: border-box;
-      text-align: center;
-    }
-  
-    #status {
-      font-size: 1.1rem;
-      line-height: 1.4;
-      font-weight: 500;
-    }
-  
+/* -----------------------------------
+   ✦ Responsive Adjustments (Memory)
+------------------------------------ */
+@media (max-width: 768px) {
+  /* General layout tweaks */
+  body {
+    padding: 10px;
   }
+
+  .page-content {
+    padding: 0 10px;
+  }
+
+  h1 {
+    font-size: clamp(1.7rem, 5vw, 2.4rem);
+    line-height: 1.2;
+    margin-top: 6rem;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  #status-container {
+    width: 95%;
+    height: 4rem;
+    padding: 3px 12px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  #status {
+    font-size: 1.1rem;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  #win-counter {
+    font-size: 0.9rem;
+    margin-top: 0;
+  }
+
+  /* Back Button tweaks */
+  .back-button {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    margin: 15px auto;
+  }
+
+  /* Privacy Modal tweaks */
+  .privacy-modal .modal-content {
+    width: 90%;
+    max-width: 90%;
+    padding: 1.5rem;
+    margin: 0 auto;
+    border-radius: 6px;
+    font-size: 0.9rem;
+  }
+
+  #closePrivacy {
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Even smaller devices */
+  h1 {
+    font-size: 1.6rem;
+    margin-top: 5rem;
+  }
+
+  h2 {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+
+  #status-container {
+    width: 94%;
+    height: 3rem;
+    padding: 0.5rem;
+  }
+
+  #status {
+    font-size: 1rem;
+  }
+
+  #win-counter {
+    font-size: 0.85rem;
+  }
+
+  /* Privacy Modal even tighter */
+  .privacy-modal .modal-content {
+    padding: 3rem;
+    font-size: 0.85rem;
+  }
+
+  #closePrivacy {
+    top: 0.25rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    color: gray;
+  }
+}
+
   
   #win-counter {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

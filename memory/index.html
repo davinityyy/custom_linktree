@@ -32,7 +32,7 @@
     <span>loading...</span>
   </div>
   
-  <div class="page-content"></div>
+  <main class="page-content">
     <h1>
         <span>M</span>
         <span class="l33t" data-normal="E">3</span>
@@ -59,7 +59,14 @@
     </div>
 
     <p id="win-counter"></p>
-  </div>
+
+    <a href="#" class="back-button" id="back-to-home">← back to homepage</a>
+   </main>
+
+    <footer>
+     <p><span class="year">&copy; 2025</span> davina rose | <a href="#" id="showPrivacy">privacy policy</a></p>
+    </footer>
+
 
 
     
@@ -85,9 +92,7 @@
 }
 
         </script>
-       
-       <a href="#" class="back-button" id="back-to-home">← back to homepage</a>
-   
+
        <script>
 document.getElementById('back-to-home').addEventListener('click', (e) => {
   e.preventDefault();
@@ -109,10 +114,7 @@ document.getElementById('back-to-home').addEventListener('click', (e) => {
 
 
       </script>
-      
-      <footer>
-        <p><span class="year">&copy; 2025</span> davina rose | <a href="#" id="showPrivacy">privacy policy</a></p>
-      </footer>
+    
      
       <!-- Modal structure -->
 <div id="privacyModal" class="privacy-modal hidden">
