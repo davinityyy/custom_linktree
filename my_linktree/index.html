@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <script>
+            // Clear session flags + loader state if you're returning FROM memory game
+            if (sessionStorage.getItem('fromLinktree') === 'true') {
+              sessionStorage.removeItem('fromLinktree');
+              document.documentElement.classList.add('from-linktree'); // used for blur/fade
+              document.body?.classList.add('from-linktree'); // same
+            }
+          
+            // Always ensure clean loader state
+            document.documentElement.classList.remove('loading');
+            document.body?.classList.remove('loading');
+          </script>
+          
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Davina Rose's personal link page for content and interests">
+        <meta name="author" content="Davina Rose">
+        <title>davina rose - personal links</title>
+        <link rel="stylesheet" href="styles.css">
+        <!-- Add a favicon if you have one -->
+        <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Davina Rose ✧ [davinityyy]">
+  <meta property="og:description" content="click to explore my world :3 music, exclusive content & wishlist inside ↓">
+  <meta property="og:image" content="https://yourdomain.com/assets/sudavina.png">
+  <meta property="og:url" content="https://davinityyy.com">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Davina Rose ✧ [davinityyy]">
+  <meta name="twitter:description" content="click to explore my world :3 music, exclusive content & wishlist inside ↓">
+  <meta name="twitter:image" content="https://davinityyy.com/assets/sudavina.png">
+</head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y6LDCBJH3Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y6LDCBJH3Q');
+
+  
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const h1Element = document.querySelector("h1");
+        const h2Element = document.querySelector("h2");
+    
+        // L33t Mapping
+        const l33tMap = { "a": "4", "e": "3", "i": "1", "o": "0", "s": "5" };
+    
+        function transformLetter(letter) {
+            return l33tMap[letter.toLowerCase()] || letter;
+        }
+    
+        function applyL33tEffect(event) {
+            const span = event.target;
+            if (span.tagName === "SPAN") {
+                const originalText = span.innerText;
+                span.innerText = transformLetter(originalText);
+                setTimeout(() => {
+                    span.innerText = originalText; // Revert after delay
+                }, 1500);
+            }
+        }
+    
+        function applyRainbowEffect(event) {
+            const span = event.target;
+            if (span.tagName === "SPAN") {
+                span.style.transition = "color 0.8s ease-in-out";
+                span.style.color = getRandomRainbowColor();
+                setTimeout(() => {
+                    span.style.color = ""; // Revert after 1.5 seconds
+                }, 1500);
+            }
+        }
+    
+        function wrapLetters(element) {
+            const text = element.innerText;
+            element.innerHTML = text.split("").map(char => `<span>${char}</span>`).join("");
+        }
+    
+        function getRandomRainbowColor() {
+            const colors = ["#ff0000", "#ff7f00", "#ffff00", "#00ff00", "#0000ff", "#4b0082", "#9400d3"];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    
+        wrapLetters(h1Element);
+        wrapLetters(h2Element);
+    
+        h1Element.addEventListener("click", applyL33tEffect);
+        h2Element.addEventListener("click", applyRainbowEffect);
+    });
+    </script>
+    
+<body>
+
+    <div class="link-container">
+        <h1>✧ davina rose ✧</h1>
+        <h2>[ davinityyy ]</h2>
+        <h3>click a link to explore my world :3 <br>music, exclusive content & wishlist inside ↓</h3>
+        <div class="sudavina-container">
+            <img src="assets/sudavina.png" alt="Sudavina" class="sudavina-img">
+        </div>
+        
+        <ul>
+            <li class="other-button-container">
+                <a href="https://fansly.com/davinityyy" class="main-link" target="_blank" rel="noopener noreferrer">
+                    fansly
+                    <span class="hover-text">exclusive content</span>
+                </a>
+            </li>
+
+            <li class="other-button-container">
+                <a href="/memory" id="memory-link" class="main-link" target="_blank" rel="noopener noreferrer">
+                    memory game
+                    <span class="hover-text">test your braincellz</span>
+                  </a>
+                                   
+              </li>
+            <li class="other-button-container">
+                <a href="https://throne.com/davinityyy" class="main-link" target="_blank" rel="noopener noreferrer">
+                    throne
+                    <span class="hover-text">my wishlist!</span>
+                </a>
+            </li>
+            <li class="spotify-container">
+                <a href="https://open.spotify.com/user/1240349387" class="main-link" target="_blank" rel="noopener noreferrer">spotify</a>
+                <div class="favorites-text">or choose from some of my favorites</div>
+                <div class="sub-buttons">
+                    <a href="https://open.spotify.com/playlist/31s3YxiukLzeiOcrVQEaYD?si=3dfV-Jw_RMOv3eejBbek6A" target="_blank" rel="noopener noreferrer">drum n bassSTEP</a>
+                    <a href="https://open.spotify.com/playlist/2eoayKyhSrRZQyIej5VTGg?si=UtxGCZ43TlGWRzInVkWG4w" target="_blank" rel="noopener noreferrer">anime OSTs</a>
+                    <a href="https://open.spotify.com/playlist/5QnuLZIuRpW2PFWmYLwBQX?si=G_yzpinnRCqAcrVgWb_44w" target="_blank" rel="noopener noreferrer">untz</a>
+                    <a href="https://open.spotify.com/playlist/43f4u4mhx2gLzkolJTdSjT?si=dAp_stGmTAOA9IMeO23cTA" target="_blank" rel="noopener noreferrer">ez katka</a>
+                </div>
+            </li>
+              
+        </ul>
+        <br><br>
+
+        <div class="social-icon-bar">
+            <a href="https://github.com/davinityyy" target="_blank" rel="noopener noreferrer">
+                <img src="assets/githublogo.png" alt="GitHub" class="social-icon">
+            </a>
+            <a href="https://youtube.com/@davinityyy" target="_blank" rel="noopener noreferrer">
+                <img src="assets/youtubelogo.png" alt="YouTube" class="social-icon">
+            </a>
+            <a href="https://www.tiktok.com/@davinityy" target="_blank" rel="noopener noreferrer">
+                <img src="assets/tiktoklogo.png" alt="TikTok" class="social-icon">
+            </a>
+        </div>
+        
+        <br>
+
+        <footer>
+            <p><span class="year">&copy; 2023</span> davina rose | <a href="#" id="showPrivacy">privacy policy</a></p>
+          <p class="visitor-counter" style="font-size: 0.75rem; color: #7fd6dc; margin-top: -5px;"></p>
+
+        </footer>
+    </div> 
+    
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-functions-compat.js"></script>
+
+<!-- Your Firebase Config Init -->
+<script src="firebase-init.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof incrementVisitorCount === "function") {
+                incrementVisitorCount()
+                    .then((result) => {
+                        const count = result.data.newCount;
+                        document.querySelector(".visitor-counter").textContent =
+                            `✶ you are visitor #${String(count).padStart(4, '0')} ✶`;
+                    })
+                    .catch((err) => {
+                        console.error("Failed to increment visitor count:", err);
+                    });
+            } else {
+                console.warn("Firebase not initialized yet or increment function missing.");
+            }
+        });
+    </script>
+  
+<script>
+function incrementVisitorCount() {
+    const increment = firebase.functions().httpsCallable('incrementVisitorCount');
+    return increment();
+}
+</script>
+
+
+<div id="page-loader" class="pixel-loader hidden">
+    <span>loading...</span>
+  </div>
+  
+  <script>
+document.getElementById('memory-link').addEventListener('click', (e) => {
+  e.preventDefault();
+
+  // 🔑 Set session flag to trigger blur-fade on memory page
+  sessionStorage.setItem('fromLinktree', 'true');
+
+  const loader = document.getElementById('page-loader');
+  loader.classList.remove('hidden');
+  loader.classList.add('visible');
+
+  setTimeout(() => {
+    window.location.href = 'memory/index.html';
+  }, 1600);
+});
+
+  </script>
+  
+<!-- Modal structure -->
+<div id="privacyModal" class="privacy-modal hidden">
+    <div class="modal-content">
+      <button id="closePrivacy">×</button>
+      <div id="privacyText">loading...</div>
+    </div>
+  </div>
+  
+
+  <script>
+    const privacyModal = document.getElementById('privacyModal');
+    const showPrivacy = document.getElementById('showPrivacy');
+    const closePrivacy = document.getElementById('closePrivacy');
+  
+    showPrivacy.addEventListener('click', (e) => {
+      e.preventDefault();
+      privacyModal.classList.remove('hidden');
+      privacyModal.classList.add('showing');
+  
+      fetch('privacy.html')
+        .then(res => res.text())
+        .then(html => {
+          const parsed = new DOMParser().parseFromString(html, 'text/html');
+          const content = parsed.querySelector('main, body, .content') || parsed.body;
+          document.getElementById('privacyText').innerHTML = content.innerHTML;
+        });
+    });
+  
+    closePrivacy.addEventListener('click', () => {
+      privacyModal.classList.remove('showing');
+      privacyModal.classList.add('hidden');
+    });
+  </script>
+  
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mainLinks = document.querySelectorAll('.main-link');
+    
+        mainLinks.forEach(link => {
+            let tapped = false;
+    
+            link.addEventListener('click', function(e) {
+                if (!tapped && window.innerWidth <= 768) {  // Adjust this value as needed
+                    e.preventDefault();
+                    tapped = true;
+                    setTimeout(() => { tapped = false; }, 5000);  // Reset after 5 seconds
+                }
+            });
+    
+            link.addEventListener('touchstart', function() {
+                this.classList.add('touch-hover');
+            });
+    
+            link.addEventListener('touchend', function() {
+                this.classList.remove('touch-hover');
+            });
+        });
+    });
+    </script>
+    <script>
+        document.querySelector('.year').textContent = new Date().getFullYear();
+    </script>
+</html>

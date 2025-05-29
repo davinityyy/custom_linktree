@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>custom linkpage order form | davina rose</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="form.css"/>
+</head>
+<body>
+    <button id="darkModeToggle" aria-label="Toggle dark mode">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </button>
+
+  <div class="page-layout">
+    <div class="content-with-controls">
+  <div class="content-container">
+    <img src="assets/standin.png" alt="standin logo" class="logo" draggable="false">
+    <h1 contenteditable="true" class="editable" id="titleText">your name</h1>
+    <h2 contenteditable="true" class="editable" id="usernameText">[username]</h2>
+    <h3 contenteditable="true" class="editable" id="descText">write whatever you'd like here!</h3>
+
+    <ul>
+      <!-- ✧ Default button -->
+      <li class="button1-container" data-static>
+        <a class="button editable" role="button" aria-label="Button 1" contenteditable="true">
+          button
+        </a>
+      </li>
+    
+      <!-- ✧ Hover text button -->
+      <li class="button2-container is-hover" data-static>
+        <a class="button editable" role="button" aria-label="Button 2" contenteditable="true">
+          hover button
+          <span class="hover-text" contenteditable="true">text of your choice here</span>
+        </a>
+      </li>
+    
+      <!-- ✧ Dropdown button -->
+      <li class="button3-container is-dropdown" data-static>
+        <a class="button editable" role="button" aria-label="Button 3" contenteditable="true">
+          dropdown button
+        </a>
+        <div class="sub-text editable" contenteditable="true">extra texty text can go here!</div>
+        <div class="sub-buttons">
+          <a class="button editable" role="button" aria-label="Option 1" contenteditable="true">option 1</a>
+          <a class="button editable" role="button" aria-label="Option 2" contenteditable="true">option 2</a>
+        </div>
+      </li>
+    </ul>
+    
+      
+    <div class="social-icon-bar">
+      <div class="icons" role="img" aria-label="Social Icons"></div>
+    </div>
+    
+
+    <footer>
+      <p>&copy; <span class="year">2024</span> Your Name | all rights reserved</p>
+    </footer>
+  </div>
+
+  <div class="button-type-panel" id="buttonControls">
+    <!-- Buttons will be injected here dynamically -->
+    <button id="addButton" class="add-button">+</button>
+  </div>
+  
+  <div class="button-type-panel" id="socialControls">
+    <label for="socialRequest">Socials you'd like shown (optional):</label>
+    <textarea id="socialRequest" rows="6" spellcheck="false" placeholder="if you want socials linked, type what social icons you'd like and the links for them"></textarea>
+  </div>
+  
+  <div class="button-toggle-wrapper" id="toggleWrapper">
+    <button id="toggleSocialPanel" class="button-toggle">socials</button>
+    <button id="toggleBtnPanel" class="button-toggle">buttons</button>
+  </div>
+  
+  </div>
+
+  
+  <div class="customization-panel">
+    <div class="row-field">
+        <label for="cardBgColor">card bg</label>
+        <input type="color" id="cardBgColor" />
+      </div>
+
+      <div class="row-field">
+        <label for="cardBorderColor">card border</label>
+        <input type="color" id="cardBorderColor" />
+      </div>
+      
+    <!-- Font Selector -->
+    <div class="row-field">
+      <label for="fontStyle">font</label>
+      <select id="fontStyle">
+        <option value="Trebuchet MS">Trebuchet MS</option>
+        <option value="Verdana">Verdana</option>
+        <option value="'DogicaPixel', sans-serif">Dogica Pixel</option>
+        <option value="'Courier New', monospace">Courier New</option>
+        <option value="'Comic Sans MS', cursive">Comic Sans</option>
+        <option value="'Georgia', serif">Georgia</option>
+        <option value="'Lucida Console', monospace">Lucida Console</option>
+        <option value="'Times New Roman', serif">Times New Roman</option>
+      </select>
+    </div>
+    
+  
+    <!-- Text Color -->
+    <div class="row-field">
+        <label for="textColor">text color</label>
+        <input type="color" id="textColor" />
+      </div>
+
+    <!-- Background Type Selector -->
+     <div class="all-bg-controls">
+    <div class="row-field">
+      <label for="bgMode">bg type</label>
+      <div class="bg-mode-selector">
+        <div class="bg-toggle active" id="solidToggle">Solid</div>
+        <div class="bg-toggle" id="gradientToggle">Gradient</div>
+      </div>
+    </div>
+  
+<!-- Solid Background Controls -->
+<div class="bg-controls" id="solidControls">
+  <div class="row-field">
+    <label for="solidBgColor">background:</label>
+    <input type="color" id="solidBgColor" />
+  </div>
+</div>
+
+  
+    <!-- Gradient Background Controls -->
+    <div class="bg-controls" id="gradientControls" style="display: none;">
+      <div class="row-field">
+        <label for="gradientType">gradient type</label>
+        <select id="gradientType">
+          <option value="linear">Linear</option>
+          <option value="radial">Radial</option>
+        </select>
+      </div>
+      <div class="row-field">
+        <label for="gradientColor1">color 1</label>
+        <input type="color" id="gradientColor1" value="#136C66" />
+      </div>
+      <div class="row-field">
+        <label for="gradientColor2">color 2</label>
+        <input type="color" id="gradientColor2" value="#D0C78B" />
+      </div>
+    </div>
+</div>
+
+<div class="row-field">
+  <label for="headerColor">header color</label>
+  <input type="color" id="headerColor" value="#ffffff" />
+</div>
+
+<div class="row-field">
+  <label for="usernameColor">username color</label>
+  <input type="color" id="usernameColor" value="#ffffff" />
+</div>
+
+<div class="row-field">
+  <label for="btnBgColor">button bg</label>
+  <input type="color" id="btnBgColor" value="#683972" />
+</div>
+
+<div class="row-field">
+  <label for="btnTextColor">button text</label>
+  <input type="color" id="btnTextColor" value="#c4dee0" />
+</div>
+
+<div class="row-field">
+  <label for="iconColor">social icon</label>
+  <input type="color" id="iconColor" value="#ffffff" />
+</div>
+
+
+<!-- 🌗 Dark Mode Premium Toggle -->
+<div class="row-field darkmode-upgrade">
+  <label for="darkModeCheck" id="darkModeLabel">
+    + dark or light mode version $12
+  </label>
+  <input type="checkbox" id="darkModeCheck" />
+  <div class="tooltip-bubble" id="darkModeTooltip">
+    Includes toggle for a visually opposite mode -<br>
+    if your design is dark, the other mode will be light.
+  </div>
+</div>
+
+<!-- ✒️ Full Font Control Premium Toggle -->
+<div class="row-field full-font-upgrade">
+  <label for="fullFontCheck" id="fontControlLabel">
+    + full font control $5
+  </label>
+  <input type="checkbox" id="fullFontCheck" />
+  <div class="tooltip-bubble" id="fontTooltip">
+    Unlock font selection for headers & buttons.<br>
+    Or skip it and rock the default pixel aesthetic.
+    </div>
+</div>
+
+    
+
+    <div class="preview-output" id="previewSummary">
+        ✧ Live preview summary will appear here ✧
+      </div>
+        </div>
+    </div>
+
+  <button id="togglePreview" class="preview-toggle-btn">preview</button>
+  
+  
+
+  <script src="script.js"></script>
+</body>
+</html>

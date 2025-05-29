@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+      if (sessionStorage.getItem('fromLinktree') === 'true') {
+        document.documentElement.classList.add('from-linktree');
+      }
+    </script>
+  
+  <script>
+    // Immediately clear loader state (like index.html)
+    document.documentElement.classList.remove('loading');
+    document.body?.classList.remove('loading');
+  </script>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>memory game</title>
+    <link rel="stylesheet" href="memory.css"/>
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-functions-compat.js"></script>
+
+<!-- Your Firebase Config Init -->
+<script src="../firebase-init.js"></script>
+
+    
+</head>
+<body>
+  <div id="page-loader" class="pixel-loader hidden">
+    <span>loading...</span>
+  </div>
+  
+  <main class="page-content">
+    <h1>
+        <span>M</span>
+        <span class="l33t" data-normal="E">3</span>
+        <span>M</span>
+        <span class="l33t" data-normal="O">0</span>
+        <span>R</span>
+        <span>Y</span>
+        <span class="l33t" data-normal="S">5</span>
+        <span>Q</span>
+        <span>U</span>
+        <span class="l33t" data-normal="A">4</span>
+        <span>R</span>
+        <span class="l33t" data-normal="E">3</span>
+    </h1>
+    
+    <h2>a project by davina</h2>
+
+    <!-- Game Board -->
+    <div id="game-board"></div>
+
+    <!-- Status Container -->
+    <div id="status-container">
+        <p id="status"></p>
+    </div>
+
+    <p id="win-counter"></p>
+
+    <a href="#" class="back-button" id="back-to-home">← back to homepage</a>
+   </main>
+
+    <footer>
+     <p><span class="year">&copy; 2025</span> davina rose | <a href="#" id="showPrivacy">privacy policy</a></p>
+    </footer>
+
+
+
+    
+        <!-- Link JavaScript file -->
+        <script src="memory.js"></script>
+
+        <script>
+          window.addEventListener('load', () => {
+            document.body.classList.add('ready');
+          });
+        </script>
+        
+        <script>
+          // Check if user came from linktree transition
+          if (sessionStorage.getItem('fromLinktree') === 'true') {
+  document.body.classList.add('from-linktree');
+
+  setTimeout(() => {
+    sessionStorage.removeItem('fromLinktree');
+    document.body.classList.remove('from-linktree');
+    document.body.classList.add('unblur');
+  }, 50); // small delay lets transition activate
+}
+
+        </script>
+
+       <script>
+document.getElementById('back-to-home').addEventListener('click', (e) => {
+  e.preventDefault();
+
+  // ✅ tell homepage it should play fade-in
+  sessionStorage.setItem('fromLinktree', 'true');
+
+  // ✅ activate loader on current screen
+  const loader = document.getElementById('page-loader');
+  document.body.classList.add('loading');
+  document.documentElement.classList.add('loading');
+  loader.classList.remove('hidden');
+  loader.classList.add('visible');
+
+  setTimeout(() => {
+    window.location.href = '../index.html';
+  }, 1600);
+});
+
+
+      </script>
+    
+     
+      <!-- Modal structure -->
+<div id="privacyModal" class="privacy-modal hidden">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <button id="closePrivacy">×</button>
+    <div id="privacyText">loading...</div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('privacyModal');
+  const showBtn = document.getElementById('showPrivacy');
+  const closeBtn = document.getElementById('closePrivacy');
+  const privacyText = document.getElementById('privacyText');
+  
+  showPrivacy.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  // Show the modal
+  modal.classList.remove('hidden');
+
+  // Force reflow to ensure transition triggers
+  void modal.offsetWidth;
+
+  modal.classList.add('showing');
+
+  fetch('../privacy.html')
+    .then(res => res.text())
+    .then(html => {
+      const parsed = new DOMParser().parseFromString(html, 'text/html');
+      const content = parsed.querySelector('main, body, .content') || parsed.body;
+      privacyText.innerHTML = content.innerHTML;
+    });
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.classList.remove('showing');
+
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 400); // matches the transition timing
+});
+
+  </script>
+  
+
+</body>
+</html>

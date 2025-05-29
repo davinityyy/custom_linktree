@@ -1,0 +1,595 @@
+@font-face {
+    font-family: 'DogicaPixel';
+    src: url('../fonts/dogicapixel.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'DogicaPixelBold';
+    src: url('../fonts/dogicapixelbold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+
+  html {
+    overflow-x: hidden;
+  }  
+  
+  
+  body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    background-color: #1a2b1f; /* Dark green, like a PCB */
+    background-image: 
+        linear-gradient(90deg, rgba(34, 85, 51, 0.3) 1px, transparent 1px),
+        linear-gradient(rgba(34, 85, 51, 0.3) 1px, transparent 1px);
+    background-size: 40px 40px; /* Wider spacing for motherboard traces */
+    color: #33ff99; /* Neon green for text */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard */
+    overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1a2b1f;
+  background-image: 
+      linear-gradient(90deg, rgba(34, 85, 51, 0.3) 1px, transparent 1px),
+      linear-gradient(rgba(34, 85, 51, 0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1; /* 👈 stay behind all content */
+  pointer-events: none; /* 👈 don't block clicks */
+}
+
+
+.page-content {
+  flex: 1; /* stretch to push footer down */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+}
+  
+
+h1 {
+    font-family: 'DogicaPixelBold', Arial, sans-serif;
+    font-size: 2rem; /* Adjust as needed */
+    text-align: center;
+    margin: 20px 0;
+    letter-spacing: 0.1em; /* Adjust as needed to match original spacing */
+    display: flex;
+    justify-content: center;
+}
+
+h1 span {
+    display: inline-block;
+    line-height: 1; /* Prevents extra vertical spacing */
+    margin: 0; /* Removes unnecessary margins */
+    padding: 0; /* Ensures no extra padding */
+}
+
+h2 {
+    font-size: 0.75rem;
+    margin-top: -10px;
+    color: #c59eb4;
+    font-family: 'DogicaPixel', Arial, sans-serif;
+}
+
+/* === BACKDROP === */
+.privacy-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, backdrop-filter 0.6s ease;
+}
+
+.privacy-modal.showing {
+  opacity: 1;
+  pointer-events: all;
+  backdrop-filter: blur(6px); /* keeps consistent */
+}
+
+.privacy-modal.hidden {
+  display: none;
+}
+
+/* === MODAL BOX === */
+.modal-content {
+  background: #f9f9f9;
+  color: #333;
+  font-size: 0.9rem;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 3rem;
+  position: relative;
+
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.privacy-modal.showing .modal-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.privacy-modal.modal-exit .modal-content {
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+}
+
+.modal-content h1 {
+  font-size: 1.5rem;
+  margin-top: -1rem;
+}
+
+.modal-content p {
+  font-size: 1rem;
+}
+
+#closePrivacy {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#closePrivacy:hover {
+  color: #11b865;
+}
+
+  footer {
+    margin-top: auto;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  
+  footer .year {
+    font-size: 0.8em;
+  }
+
+  footer p {
+    margin: 5px 0;
+  }
+  
+  footer a {
+    color: inherit;
+    font-size: 0.75rem;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    color: #ffffff; /* or whatever your hover color vibe is */
+  }
+  
+
+#game-board {
+    position: relative;
+    background-color: #264d29; /* Deep green base, similar to a motherboard */
+    background-image: 
+        linear-gradient(90deg, #397d47 1px, transparent 1px),
+        linear-gradient(0deg, #397d47 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 20px 20px, 20px 20px, 100px 100px; /* Adjust trace spacing */
+    border: 4px solid #4a4a4a;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    margin: 20px auto;
+    display: grid;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#ascii-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: monospace;
+    text-align: center;
+    font-size: 1rem;
+    white-space: pre;
+    line-height: 1.5;
+    color: #d3d3d3;
+    display: none; /* Hidden by default */
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+    background-color: lightgray;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+.square:hover {
+    background-color: #cacaca; /* Hover effect */
+}
+
+
+/* Disable hover effect for already correctly selected squares */
+.square.correct:hover {
+    background-color: rgb(131, 183, 152); /* Keep the correct background unchanged */
+    cursor: default; /* Change cursor to default (non-clickable) */
+}
+
+.correct {
+    background-color: rgb(131, 183, 152); /* Correct choice */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a glow effect */
+    animation: glow 1s infinite alternate; /* Glowing effect */
+}
+
+.incorrect {
+    background-color: rgb(177, 123, 123); /* Incorrect choice */
+    animation: glitch 0.5s infinite; /* Electric glitch effect */
+}
+
+/* Disable hover effect for already incorrectly selected squares */
+.square.incorrect:hover {
+    background-color: rgb(177, 123, 123); /* Keep the incorrect background unchanged */
+}
+
+#status {
+    font-size: 1.1rem;
+    margin-top: 5px;
+    text-align: center;
+    font-family: 'DogicaPixel', Arial, sans-serif;
+    color: #444;
+}
+
+/* New Status Container */
+#status-container {
+    height: 60px; /* Fixed height to prevent shifting */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    border: 2px solid #ccc;
+    background-color: #f7f7f7;
+    width: 60%;
+    box-shadow: 4px 4px 0px #aaa;
+}
+
+/* Instant character replacement on hover */
+
+.l33t {
+    position: relative;
+    display: inline-block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#game-board pre {
+    font-size: 0.8rem; /* Adjust size as needed */
+    line-height: 1.5;
+    text-align: center;
+    margin: 0 auto;
+    color: #444;
+}
+
+/* New Animations */
+@keyframes glow {
+    0% { box-shadow: 0 0 2px #33ff99; }
+    100% { box-shadow: 0 0 10px #33ff99; }
+}
+
+@keyframes glitch {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1) rotate(1deg); }
+}
+
+/* Jiggle animation for a happy effect */
+@keyframes jiggle-happy {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-2px); }
+    50% { transform: translateY(2px); }
+    75% { transform: translateY(-1px); }
+}
+
+/* Jiggle animation for a sad effect */
+@keyframes jiggle-sad {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+    75% { transform: rotate(-1deg); }
+}
+
+/* Happy jiggle class */
+.jiggle-happy {
+    animation: jiggle-happy 0.25s ease-in-out;
+}
+
+/* Sad jiggle class */
+.jiggle-sad {
+    animation: jiggle-sad 0.25s ease-in-out;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards; /* Quick fade-out over 0.5s */
+}
+
+
+@keyframes wave {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-5px); /* Move up */
+    }
+
+    75% {
+        transform: translateY(5px); /* Move down */
+    }
+    100% {
+        transform: translateY(1px); /* Return to original position */
+    }
+}
+
+
+.wave {
+    display: inline-block; /* Animate each letter individually */
+    animation: wave 1s infinite; /* Continuous wave effect */
+    animation-timing-function: ease-in-out; /* Smooth movement */
+}
+
+/* -----------------------------------
+   ✦ Responsive Adjustments (Memory)
+------------------------------------ */
+@media (max-width: 768px) {
+  /* General layout tweaks */
+  body {
+    padding: 10px;
+  }
+
+  .page-content {
+    padding: 0 10px;
+  }
+
+  h1 {
+    font-size: clamp(1.7rem, 5vw, 2.4rem);
+    line-height: 1.2;
+    margin-top: 6rem;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  #status-container {
+    width: 95%;
+    height: 4rem;
+    padding: 3px 12px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  #status {
+    font-size: 1.1rem;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  #win-counter {
+    font-size: 0.9rem;
+    margin-top: 0;
+  }
+
+  /* Back Button tweaks */
+  .back-button {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    margin: 15px auto;
+  }
+
+  /* Privacy Modal tweaks */
+  .privacy-modal .modal-content {
+    width: 90%;
+    max-width: 90%;
+    padding: 1.5rem;
+    margin: 0 auto;
+    border-radius: 6px;
+    font-size: 0.9rem;
+  }
+
+  #closePrivacy {
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Even smaller devices */
+  h1 {
+    font-size: 1.6rem;
+    margin-top: 5rem;
+  }
+
+  h2 {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+
+  #status-container {
+    width: 94%;
+    height: 3rem;
+    padding: 0.5rem;
+  }
+
+  #status {
+    font-size: 1rem;
+  }
+
+  #win-counter {
+    font-size: 0.85rem;
+  }
+
+  /* Privacy Modal even tighter */
+  .privacy-modal .modal-content {
+    padding: 3rem;
+    font-size: 0.85rem;
+  }
+
+  #closePrivacy {
+    top: 0.25rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    color: gray;
+  }
+}
+
+  
+  #win-counter {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 0.95rem;
+    color: #c59eb4;
+    text-align: center;
+    margin-top: -5px;
+    letter-spacing: 0.5px;
+    user-select: none;
+    transition: all 0.3s ease;
+  }
+
+  /* === Blurred fade-in when arriving from linktree === */
+  html.from-linktree body {
+    opacity: 0;
+    backdrop-filter: blur(8px);
+    transition: opacity 0.8s ease, backdrop-filter 1.2s ease;
+  }
+  
+  html.from-linktree body.unblur {
+    opacity: 1;
+    backdrop-filter: blur(0px);
+  }
+  
+  body.from-linktree {
+    opacity: 0;
+    backdrop-filter: blur(8px);
+    transition: opacity 0.6s ease, backdrop-filter 1.2s ease;
+  }
+  
+  body.unblur {
+    opacity: 1;
+    backdrop-filter: blur(0px);
+  }
+  
+  .back-button {
+    display: inline-block;
+    margin: 10px auto;
+    padding: 4px 12px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #33ff99;
+    background-color: #4e4e4e;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+  }
+  
+  .back-button:hover {
+    background-color: #7fdcaf;
+    color: #000;
+  }
+  
+  .pixel-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    backdrop-filter: blur(3px);
+    background: rgba(255, 255, 255, 0.6);
+    color: #333;
+    font-family: 'DogicaPixel', monospace;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  
+  
+  .pixel-loader.visible {
+    display: flex;
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  
+  .pixel-loader span {
+    animation: blink-twice 1s steps(1, end) 1.5;
+  }
+  @keyframes blink-twice {
+    0%   { opacity: 1; }
+    25%  { opacity: 0; }
+    50%  { opacity: 1; }
+    75%  { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  html.loading, body.loading {
+    overflow: hidden;
+    height: 100%;
+  }
+  
